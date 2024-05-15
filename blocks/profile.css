@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   padding-top: 40px;
+  align-items: center;
 }
 
 .profile__image {
@@ -34,7 +35,8 @@
   width: 24px;
   grid-area: button;
   border: 1px solid #fff;
-  margin-top: 15px;
+  align-self: center;
+  margin-top: 5px;
 }
 
 .profile__description {
