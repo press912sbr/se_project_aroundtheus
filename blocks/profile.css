@@ -44,6 +44,11 @@
   margin: 5px 5px 0;
 }
 
+.profile__edit-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 .profile__description {
   font-size: 18px;
   line-height: 22px;
@@ -60,6 +65,11 @@
   border: 2px solid #fff;
   border-radius: 2px;
   padding: 0;
+}
+
+.profile__add-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 580px) {
