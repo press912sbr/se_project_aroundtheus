@@ -7,6 +7,7 @@
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19x;
+  display: none;
 }
 
 .modal__opened {
