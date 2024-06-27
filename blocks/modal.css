@@ -20,8 +20,8 @@
   padding: 36px;
   border-radius: 10px;
   position: relative;
-  width: 430px;
-  height: 330px;
+  max-width: 430px;
+  max-height: 330px;
   border-radius: 10px;
   color: #000;
 }
@@ -31,6 +31,15 @@
   font-size: 24px;
   line-height: 30px;
   margin-bottom: 54px;
+}
+/* i just cant figure out how to fix my borders
+ on my input fields they wont change 
+ and im out of time i need to turn in my project 
+ please how can i style my input fields*/
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .modal__close {
@@ -47,9 +56,37 @@
   cursor: pointer;
 }
 
+.modal__close:hover {
+  opacity: 0.6;
+}
+
 .modal__button {
   width: 358px;
   height: 50px;
   background-color: #000;
   color: #fff;
+  cursor: pointer;
+}
+
+.modal__button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 580px) {
+  .modal__container {
+    max-width: 282px;
+    max-height: 322px;
+    padding: 22px;
+  }
+
+  .modal__button {
+    max-width: 238px;
+    max-height: 46px;
+  }
+
+  .modal__close {
+    right: 0;
+    width: 26px;
+    height: 26px;
+  }
 }
