@@ -6,11 +6,11 @@
   bottom: 0;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 19x;
+  padding: 0 19px;
   display: none;
 }
 
-.modal__opened {
+.modal--modal__opened {
   display: flex;
 }
 
@@ -21,7 +21,6 @@
   border-radius: 10px;
   position: relative;
   max-width: 430px;
-  max-height: 330px;
   border-radius: 10px;
   color: #000;
 }
@@ -31,15 +30,29 @@
   font-size: 24px;
   line-height: 30px;
   margin-bottom: 54px;
+  margin-top: 0;
 }
-/* i just cant figure out how to fix my borders
- on my input fields they wont change 
- and im out of time i need to turn in my project 
- please how can i style my input fields*/
+
 .modal__form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+}
+
+.modal__title-input {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  line-height: 27px;
+  margin-bottom: 30px;
+}
+
+.modal__description-input {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  line-height: 27px;
 }
 
 .modal__close {
@@ -66,6 +79,12 @@
   background-color: #000;
   color: #fff;
   cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 48px;
 }
 
 .modal__button:hover {
@@ -73,15 +92,19 @@
 }
 
 @media screen and (max-width: 580px) {
+  .modal__heading {
+    margin-bottom: 75px;
+  }
+
   .modal__container {
     max-width: 282px;
-    max-height: 322px;
-    padding: 22px;
+    padding: 25px 22px;
   }
 
   .modal__button {
     max-width: 238px;
     max-height: 46px;
+    margin-top: 45px;
   }
 
   .modal__close {
