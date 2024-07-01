@@ -10,7 +10,7 @@
   display: none;
 }
 
-.modal--modal__opened {
+.modal_modal__opened {
   display: flex;
 }
 
@@ -38,21 +38,14 @@
   flex-direction: column;
 }
 
-.modal__title-input {
+.modal__input {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
   border-right: none;
   line-height: 27px;
   margin-bottom: 30px;
-}
-
-.modal__description-input {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  line-height: 27px;
+  font-size: 14px;
 }
 
 .modal__close {
@@ -84,7 +77,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin-top: 48px;
+  margin-top: 18px;
 }
 
 .modal__button:hover {
