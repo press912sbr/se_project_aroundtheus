@@ -27,7 +27,7 @@ const initialCards = [
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditCloseButton = document.querySelector(
+const profileEditCloseButton = profileEditModal.querySelector(
   "#profile-edit-close-button"
 );
 const profileTitle = document.querySelector(".profile__title");
@@ -39,8 +39,8 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddModal = document.querySelector("#card-add-modal");
-const cardAddCloseButton = document.querySelector("#card-add-close-button");
-const cardAddForm = document.querySelector("#card-add-form");
+const cardAddCloseButton = cardAddModal.querySelector("#card-add-close-button");
+const cardAddForm = cardAddModal.querySelector("#card-add-form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -75,6 +75,11 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
 
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
