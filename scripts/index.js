@@ -79,6 +79,10 @@ function getCardElement(cardData) {
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   const cardPictureModal = document.querySelector("#card-picture-modal");
   const enlargePicture = document.querySelector("#enlarge-picture");
+  const pictureName = document.querySelector(".card__name");
+  const pictureCloseButton = document.querySelector(
+    "#picture-modal-close-button"
+  );
 
   cardDeleteButton.addEventListener("click", () => {
     cardElement.remove();
@@ -91,6 +95,11 @@ function getCardElement(cardData) {
   cardImageEl.addEventListener("click", () => {
     openPopup(cardPictureModal);
     enlargePicture.src = cardData.link;
+    pictureName.textContent = cardData.name;
+  });
+
+  pictureCloseButton.addEventListener("click", () => {
+    closePopup(cardPictureModal);
   });
 
   cardTitleEl.textContent = cardData.name;
