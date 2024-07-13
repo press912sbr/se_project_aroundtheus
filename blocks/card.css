@@ -11,7 +11,7 @@
   width: 18px;
   height: 19px;
   border: none;
-  position: fixed;
+  position: absolute;
   margin: 18px 15px auto 249px;
   padding: 0;
 }
