@@ -110,4 +110,8 @@
     width: 26px;
     height: 26px;
   }
+
+  .modal__close_picture-modal {
+    right: -45px;
+  }
 }

@@ -29,9 +29,12 @@
 
 .card__picture-modal {
   position: relative;
+  margin: 90px auto;
+}
+
+.card__modal-image {
   max-width: 75vw;
   max-height: 75vh;
-  margin: auto;
 }
 
 .card__name {
@@ -73,4 +76,9 @@
 .card__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+@media screen and (max-width: 320px) {
+  .card__picture-modal {
+  }
 }
