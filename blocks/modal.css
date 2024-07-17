@@ -112,6 +112,9 @@
   }
 
   .modal__close_picture-modal {
-    right: -45px;
+    right: -35px;
+    top: -35px;
+    width: 30px;
+    height: 30px;
   }
 }
