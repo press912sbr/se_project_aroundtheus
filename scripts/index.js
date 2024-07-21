@@ -40,7 +40,7 @@ const cardAddForm = cardAddModal.querySelector("#card-add-form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-const modalClose = document.querySelectorAll(".modal__close");
+const closeButtons = document.querySelectorAll(".modal__close");
 const cardPictureModal = document.querySelector("#card-picture-modal");
 
 function closePopup(modal) {
@@ -122,7 +122,7 @@ cardAddButton.addEventListener("click", () => {
 
 cardAddForm.addEventListener("submit", handleCardAddSubmit);
 
-modalClose.forEach((button) => {
+closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
   button.addEventListener("click", () => {
     closePopup(modal);
