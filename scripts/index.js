@@ -128,3 +128,10 @@ closeButtons.forEach((button) => {
     closePopup(modal);
   });
 });
+
+document.addEventListener("keydown", function (event) {
+  const modal = this.closest(".modal");
+  if (event.key === "Escape") {
+    closePopup(modal);
+  }
+});
