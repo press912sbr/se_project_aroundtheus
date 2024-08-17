@@ -44,12 +44,12 @@ const closeButtons = document.querySelectorAll(".modal__close");
 const cardPictureModal = document.querySelector("#card-picture-modal");
 
 function closePopup(modal) {
-  modal.classList.remove("modal_opened");
+  modal.classList.remove("modal__opened");
   document.removeEventListener("keydown", handleEscClose);
 }
 
 function openPopup(modal) {
-  modal.classList.add("modal_opened");
+  modal.classList.add("modal__opened");
   document.addEventListener("keydown", handleEscClose);
 }
 
