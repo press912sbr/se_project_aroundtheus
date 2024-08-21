@@ -140,9 +140,9 @@ function handleEscClose(event) {
   }
 }
 
-const modalOverlay = document.querySelectorAll(".modal");
+const modalOverlays = document.querySelectorAll(".modal");
 
-modalOverlay.forEach(function (overlay) {
+modalOverlays.forEach(function (overlay) {
   overlay.addEventListener("click", function (event) {
     if (event.target === overlay) {
       closePopup(overlay);
