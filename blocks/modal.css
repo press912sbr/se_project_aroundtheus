@@ -43,6 +43,12 @@
   flex-direction: column;
 }
 
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .modal__input {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-top: none;
@@ -96,6 +102,8 @@
   font-size: 12px;
   font-weight: 400;
   margin-top: 5px;
+  position: absolute;
+  top: 60px;
 }
 
 .modal__input_type_error {
