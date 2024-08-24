@@ -116,6 +116,21 @@
   color: rgba(0, 0, 0, 0.2);
 }
 
+.modal__preview {
+  position: relative;
+  margin: 90px auto;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
 @media screen and (max-width: 580px) {
   .modal__heading {
     margin-bottom: 75px;

@@ -27,23 +27,6 @@
   object-fit: cover;
 }
 
-.card__picture-modal {
-  position: relative;
-  margin: 90px auto;
-}
-
-.card__modal-image {
-  max-width: 75vw;
-  max-height: 75vh;
-}
-
-.card__name {
-  bottom: -10px;
-  line-height: 15px;
-  font-size: 12px;
-  margin: 0;
-}
-
 .card__description {
   display: flex;
   background-color: white;
@@ -76,9 +59,4 @@
 .card__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
-}
-
-@media screen and (max-width: 320px) {
-  .card__picture-modal {
-  }
 }
