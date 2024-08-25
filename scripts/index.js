@@ -80,7 +80,7 @@ function getCardElement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   const enlargePicture = document.querySelector("#enlarge-picture");
-  const pictureName = document.querySelector(".card__name");
+  const pictureName = document.querySelector(".modal__name");
 
   cardDeleteButton.addEventListener("click", () => {
     cardElement.remove();
