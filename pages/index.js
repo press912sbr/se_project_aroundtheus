@@ -52,6 +52,7 @@ const validationSettings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
 const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
