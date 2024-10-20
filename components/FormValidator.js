@@ -12,7 +12,7 @@ class FormValidator {
   _showInputError(inputElement) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
-    errorElement.textContent = this._errorClass;
+    errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass);
   }
 
@@ -35,7 +35,9 @@ class FormValidator {
     }
   }
 
-  _hasInvalidInput() {}
+  _hasInvalidInput() {
+    return this._inputList.some((input) => !input.validity.valid);
+  }
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
