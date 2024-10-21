@@ -1,13 +1,3 @@
-function closePopup(modal) {
-  modal.classList.remove("modal__opened");
-  document.removeEventListener("keydown", handleEscClose);
-}
-
-function openPopup(modal) {
-  modal.classList.add("modal__opened");
-  document.addEventListener("keydown", handleEscClose);
-}
-
 class Card {
   constructor(cardData, cardSelector) {
     this._name = cardData.name;
@@ -16,7 +6,7 @@ class Card {
   }
 
   _setEventListeners() {
-    const _likeButton = this._element.querySelector(".card__like-button");
+    this._likeButton = this._element.querySelector(".card__like-button");
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
@@ -24,7 +14,7 @@ class Card {
       });
 
     this._likeButton.addEventListener("click", () => {
-      _likeButton.classList.toggle("card__like-button_active");
+      this._likeButton.classList.toggle("card__like-button_active");
     });
 
     this._element
@@ -46,13 +36,16 @@ class Card {
 
   getView() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(".card__image");
+    this._cardImage.alt = this.name;
 
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url(${this._link})`;
+    this._cardImage.src = this._link;
+
     this._element.querySelector(".card__title").textContent = this._name;
 
     this._setEventListeners();
+
+    return this._element;
   }
 }
 

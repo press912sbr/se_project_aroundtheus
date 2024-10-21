@@ -81,14 +81,11 @@ function handleProfileEditSubmit(e) {
 
 function handleCardAddSubmit(e) {
   e.preventDefault();
-  const title = e.target.title.value;
+  const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardElement = getCardElement({
-    name: title,
-    link: link,
-  });
-  const card = new Card(cardData, cardSelector);
-  cardListEl.prepend(card.getView);
+
+  const card = new Card({ name, link }, cardSelector);
+  cardListEl.prepend(card.getView());
   closePopup(cardAddModal);
   e.target.reset();
 }
@@ -133,9 +130,9 @@ profileEditButton.addEventListener("click", () => {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-
-  cardListEl.append(cardElement);
+  const cardElement = new Card(cardData, cardSelector);
+  const card = cardElement.getView();
+  cardListEl.append(card);
 });
 
 cardAddButton.addEventListener("click", () => {

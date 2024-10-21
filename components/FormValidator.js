@@ -8,7 +8,6 @@ class FormValidator {
     this._form = formSelector;
   }
 
-  // the only parameter needed is inputElement
   _showInputError(inputElement) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
@@ -24,9 +23,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    // use this._inputList and this._hasInvalidInput
     if (this._hasInvalidInput(this._inputList)) {
-      // use this._buttonElement instead
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {
@@ -62,7 +59,7 @@ class FormValidator {
 
   enableValidation() {
     this._form.addEventListener("submit", (evt) => {
-      evt.preventDefalt();
+      evt.preventDefault();
     });
 
     this._setEventListeners();
