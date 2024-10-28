@@ -14,10 +14,10 @@
   position: absolute;
   margin: 18px 15px auto 249px;
   padding: 0;
+  cursor: pointer;
 }
 
 .card__delete-button:hover {
-  cursor: pointer;
   opacity: 0.6;
 }
 
@@ -50,6 +50,7 @@
   min-width: 21px;
   min-height: 18px;
   border: none;
+  cursor: pointer;
 }
 
 .card__like-button_active {
@@ -57,6 +58,5 @@
 }
 
 .card__like-button:hover {
-  cursor: pointer;
   opacity: 0.5;
 }

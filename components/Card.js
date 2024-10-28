@@ -1,8 +1,9 @@
 class Card {
-  constructor(cardData, cardSelector) {
+  constructor(cardData, cardSelector, handleImageClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
   }
 
   _setEventListeners() {
@@ -10,7 +11,7 @@ class Card {
     this._element
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        cardElement.remove();
+        this._element.remove();
       });
 
     this._likeButton.addEventListener("click", () => {
@@ -20,10 +21,7 @@ class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        openPopup(cardPictureModal);
-        enlargePicture.src = cardData.link;
-        enlargePicture.alt = cardData.name;
-        pictureName.textContent = cardData.name;
+        this._handleImageClick(this);
       });
   }
 
