@@ -43,8 +43,6 @@ const cardAddButton = document.querySelector("#add-button");
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddForm = cardAddModal.querySelector("#card-add-form");
 const cardListEl = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 const closeButtons = document.querySelectorAll(".modal__close");
 const cardPictureModal = document.querySelector("#card-picture-modal");
 const cardSelector = "#card-template";
@@ -87,10 +85,11 @@ function handleCardAddSubmit(e) {
   const name = e.target.title.value;
   const link = e.target.link.value;
 
-  const card = new Card({ name, link }, cardSelector);
+  const card = new Card({ name, link }, cardSelector, handleImageClick);
   cardListEl.prepend(card.getView());
   closePopup(cardAddModal);
   e.target.reset();
+  addFormValidator.toggleButtonState();
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -100,7 +99,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 function handleImageClick(cardData) {
-  console.log(cardData);
   openPopup(cardPictureModal);
   enlargePicture.src = cardData._link;
   enlargePicture.alt = cardData._name;
