@@ -64,12 +64,12 @@ const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 addFormValidator.enableValidation();
 
 function closePopup(modal) {
-  modal.classList.remove("modal__opened");
+  modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscClose);
 }
 
 function openPopup(modal) {
-  modal.classList.add("modal__opened");
+  modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
 }
 
@@ -80,13 +80,21 @@ function handleProfileEditSubmit(e) {
   closePopup(profileEditModal);
 }
 
+function renderCard(item) {
+  const card = createCard(item);
+  cardListEl.prepend(card);
+}
+
+function createCard(item) {
+  return new Card(item, cardSelector, handleImageClick).getView();
+}
+
 function handleCardAddSubmit(e) {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
+  renderCard({ name: name, link: link });
 
-  const card = new Card({ name, link }, cardSelector, handleImageClick);
-  cardListEl.prepend(card.getView());
   closePopup(cardAddModal);
   e.target.reset();
   addFormValidator.toggleButtonState();
@@ -100,17 +108,15 @@ profileEditButton.addEventListener("click", () => {
 
 function handleImageClick(cardData) {
   openPopup(cardPictureModal);
-  enlargePicture.src = cardData._link;
-  enlargePicture.alt = cardData._name;
-  pictureName.textContent = cardData._name;
+  enlargePicture.src = cardData.link;
+  enlargePicture.alt = cardData.name;
+  pictureName.textContent = cardData.name;
 }
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => {
-  const cardElement = new Card(cardData, cardSelector, handleImageClick);
-  const card = cardElement.getView();
-  cardListEl.append(card);
+  renderCard(cardData);
 });
 
 cardAddButton.addEventListener("click", () => {
@@ -128,7 +134,7 @@ closeButtons.forEach((button) => {
 
 function handleEscClose(event) {
   if (event.key === "Escape") {
-    const activeModal = document.querySelector(".modal__opened");
+    const activeModal = document.querySelector(".modal_opened");
     if (activeModal) {
       closePopup(activeModal);
     }

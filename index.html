@@ -61,7 +61,7 @@
         ></button>
         <h2 class="modal__heading">Edit Profile</h2>
         <form class="modal__form" name="modal__form" id="profile-edit-form">
-          <label for="input" class="modal__label">
+          <label for="profile-title-input" class="modal__label">
             <input
               class="modal__input"
               type="text"
@@ -74,7 +74,7 @@
             />
             <span class="modal__error" id="profile-title-input-error"></span>
           </label>
-          <label for="input" class="modal__label">
+          <label for="profile-description-input" class="modal__label">
             <input
               class="modal__input"
               type="text"
@@ -82,7 +82,7 @@
               placeholder="description"
               id="profile-description-input"
               minlength="2"
-              max="200"
+              maxlength="200"
               required
             />
             <span
@@ -103,20 +103,20 @@
         ></button>
         <h2 class="modal__heading">New place</h2>
         <form class="modal__form" name="modal__form" id="card-add-form">
-          <label for="input" class="modal__label">
+          <label for="card-title-input" class="modal__label">
             <input
               class="modal__input"
               type="text"
               name="title"
               placeholder="Title"
               id="card-title-input"
-              min="1"
-              max="30"
+              minlength="1"
+              maxlength="30"
               required
             />
             <span class="modal__error" id="card-title-input-error"></span>
           </label>
-          <label for="input" class="modal__label">
+          <label for="card-link-input" class="modal__label">
             <input
               class="modal__input"
               type="url"
@@ -144,7 +144,7 @@
           id="picture-modal-close-button"
           type="button"
         ></button>
-        <img src="" alt="" class="modal__image" id="enlarge-picture" />
+        <img src="#" alt="" class="modal__image" id="enlarge-picture" />
         <p class="modal__name"></p>
       </div>
     </div>
