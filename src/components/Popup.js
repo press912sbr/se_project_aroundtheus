@@ -25,11 +25,8 @@ class Popup {
   }
 
   setEventListeners() {
-    this._closeButton((button) => {
-      button.closest(".modal");
-      button.addEventListener("click", () => {
-        this.close();
-      });
+    this._closeButton.addEventListener("click", () => {
+      this.close();
     });
   }
 }
