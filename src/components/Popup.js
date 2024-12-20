@@ -1,8 +1,8 @@
 class Popup {
   constructor({ popupSelector }) {
-    console.log(popupSelector);
     this._popupElement = document.querySelector(popupSelector);
     this._closeButton = this._popupElement.querySelector(".modal__close");
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
@@ -17,10 +17,7 @@ class Popup {
 
   _handleEscClose(event) {
     if (event.key === "Escape") {
-      // const activeModal = document.querySelector(".modal_opened");
-      // if (activeModal) {
       this.close();
-      // }
     }
   }
 
