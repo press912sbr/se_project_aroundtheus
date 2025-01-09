@@ -1,14 +1,18 @@
 export default class UserInfo {
   constructor({ profileTitle, profileDescription }) {
-    this._profileTitle = profileTitle.querySelector(".profile__title");
-    this._profileDescription = profileDescription.querySelector(
-      ".profile__description"
-    );
+    this._profileTitle = document.querySelector(profileTitle);
+    this._profileDescription = document.querySelector(profileDescription);
   }
 
-  // all your functions should not be private.
+  getUserInfo() {
+    return {
+      title: this._profileTitle.textContent,
+      description: this._profileDescription.textContent,
+    };
+  }
 
-  //getUserInfo function
-
-  //setuserinfo function
+  setUserInfo({ title, description }) {
+    this._profileTitle.textContent = title;
+    this._profileDescription.textContent = description;
+  }
 }

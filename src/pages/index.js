@@ -9,8 +9,6 @@ import UserInfo from "../components/UserInfo.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -46,11 +44,15 @@ const cardSection = new Section(
   ".cards__list"
 );
 
+const userInfo = new UserInfo({
+  profileTitle: ".profile__title",
+  profileDescription: ".profile__description",
+});
+
 cardSection.renderItems();
 
 function handleProfileEditSubmit({ title, description }) {
-  profileTitle.textContent = title;
-  profileDescription.textContent = description;
+  userInfo.setUserInfo({ title, description });
   profileEditPopup.close();
 }
 
@@ -76,8 +78,9 @@ const profileEditPopup = new PopupWithForm(
 );
 
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  const { title, description } = userInfo.getUserInfo();
+  profileTitleInput.value = title;
+  profileDescriptionInput.value = description;
   profileEditPopup.open();
   profileEditPopup.setEventListeners();
 });
