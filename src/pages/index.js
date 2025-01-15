@@ -19,13 +19,6 @@ const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddForm = cardAddModal.querySelector("#card-add-form");
 
 const cardSelector = "#card-template";
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const editFormValidator = new FormValidator(
   validationSettings,
@@ -69,6 +62,8 @@ function handleCardAddSubmit({ title, link }) {
   renderCard({ name: title, link: link });
 
   addCardModal.close();
+  cardAddForm.reset();
+  addFormValidator.toggleButtonState();
 }
 
 const addCardModal = new PopupWithForm("#card-add-modal", handleCardAddSubmit);
@@ -82,8 +77,8 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = title;
   profileDescriptionInput.value = description;
   profileEditPopup.open();
-  profileEditPopup.setEventListeners();
 });
+profileEditPopup.setEventListeners();
 
 const previewModal = new PopupWithImage({
   popupSelector: "#card-picture-modal",
@@ -96,5 +91,5 @@ function handleImageClick(card) {
 
 cardAddButton.addEventListener("click", () => {
   addCardModal.open();
-  addCardModal.setEventListeners();
 });
+addCardModal.setEventListeners();
