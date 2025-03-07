@@ -6,6 +6,7 @@ import "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -31,7 +32,7 @@ addFormValidator.enableValidation();
 
 const cardSection = new Section(
   {
-    items: initialCards,
+    items: getInitialCards,
     renderer: renderCard,
   },
   ".cards__list"
@@ -65,6 +66,24 @@ function handleCardAddSubmit({ title, link }) {
   cardAddForm.reset();
   addFormValidator.toggleButtonState();
 }
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f1f344e9-a89a-481f-af65-224244854b8a",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((result) => {
+    console.log(result);
+    // process the result
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
 
 const addCardModal = new PopupWithForm("#card-add-modal", handleCardAddSubmit);
 const profileEditPopup = new PopupWithForm(
