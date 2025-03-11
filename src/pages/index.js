@@ -29,21 +29,32 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 addFormValidator.enableValidation();
+let cardSection;
 
-const cardSection = new Section(
-  {
-    items: getInitialCards,
-    renderer: renderCard,
-  },
-  ".cards__list"
-);
+// api.getInitialCards().then((res) => {
+//   cardSection = new Section(
+//     {
+//       items: res,
+//       renderer: renderCard,
+//     },
+//     ".cards__list"
+//   );
+// });
+
+// const cardSection = new Section(
+//   {
+//     items: getInitialCards,
+//     renderer: renderCard,
+//   },
+//   ".cards__list"
+// );
 
 const userInfo = new UserInfo({
   profileTitle: ".profile__title",
   profileDescription: ".profile__description",
 });
 
-cardSection.renderItems();
+// cardSection.renderItems();
 
 function handleProfileEditSubmit({ title, description }) {
   userInfo.setUserInfo({ title, description });
@@ -75,16 +86,25 @@ const api = new Api({
   },
 });
 
-api
-  .getInitialCards()
-  .then((result) => {
-    console.log(result);
-    // process the result
-  })
-  .catch((err) => {
-    console.error(err); // log the error to the console
-  });
-
+// api
+//   .getInitialCards()
+//   .then((result) => {
+//     console.log(result);
+//     // process the result
+//   })
+//   .catch((err) => {
+//     console.error(err); // log the error to the console
+//   });
+api.getInitialCards().then((res) => {
+  cardSection = new Section(
+    {
+      items: res,
+      renderer: renderCard,
+    },
+    ".cards__list"
+  );
+  cardSection.renderItems();
+});
 const addCardModal = new PopupWithForm("#card-add-modal", handleCardAddSubmit);
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
