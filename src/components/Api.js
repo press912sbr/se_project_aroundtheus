@@ -15,6 +15,20 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  postCard({ name, link }) {
+    return fetch(this.url + "/cards", {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({ name, link }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
 
 export default Api;

@@ -8,6 +8,14 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f1f344e9-a89a-481f-af65-224244854b8a",
+    "Content-Type": "application/json",
+  },
+});
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -71,20 +79,24 @@ function createCard(item) {
 }
 
 function handleCardAddSubmit({ title, link }) {
-  renderCard({ name: title, link: link });
-
-  addCardModal.close();
-  cardAddForm.reset();
-  addFormValidator.toggleButtonState();
+  api
+    .postCard({ name: title, link: link })
+    .then((res) => {
+      renderCard({ name: res.name, link: res.link });
+      addCardModal.close();
+      cardAddForm.reset();
+      addFormValidator.toggleButtonState();
+    })
+    .catch(console.error);
 }
 
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "f1f344e9-a89a-481f-af65-224244854b8a",
-    "Content-Type": "application/json",
-  },
-});
+// const api = new Api({
+//   baseUrl: "https://around-api.en.tripleten-services.com/v1",
+//   headers: {
+//     authorization: "f1f344e9-a89a-481f-af65-224244854b8a",
+//     "Content-Type": "application/json",
+//   },
+// });
 
 // api
 //   .getInitialCards()
@@ -95,16 +107,22 @@ const api = new Api({
 //   .catch((err) => {
 //     console.error(err); // log the error to the console
 //   });
-api.getInitialCards().then((res) => {
-  cardSection = new Section(
-    {
-      items: res,
-      renderer: renderCard,
-    },
-    ".cards__list"
-  );
-  cardSection.renderItems();
-});
+api
+  .getInitialCards()
+  .then((res) => {
+    cardSection = new Section(
+      {
+        items: res,
+        renderer: renderCard,
+      },
+      ".cards__list"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
+
 const addCardModal = new PopupWithForm("#card-add-modal", handleCardAddSubmit);
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
