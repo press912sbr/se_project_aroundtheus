@@ -29,6 +29,19 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  deleteCard({ name, link }) {
+    return fetch(this.url + "/cards/:", +{ name, link }, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
 
 export default Api;

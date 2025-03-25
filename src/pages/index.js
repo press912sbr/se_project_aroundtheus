@@ -16,6 +16,11 @@ const api = new Api({
   },
 });
 
+// const deleteCardModal = new PopupWithForm(
+//   "#card-delete-modal",
+//   handleCardDeleteSubmit
+// );
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -29,6 +34,18 @@ const cardAddForm = cardAddModal.querySelector("#card-add-form");
 
 const cardSelector = "#card-template";
 
+const deleteCardModal = new PopupWithForm(
+  "#card-delete-modal",
+  handleCardDeleteSubmit
+);
+
+//const cardDeleteButton = cardSelector.querySelector(".card__delete-button");
+// cardDeleteButton.addEventListener("click", () => {
+//   deleteCardModal.classList.add("modal_opened");
+
+//   handleCardDeleteSubmit();
+// });
+
 const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
@@ -37,7 +54,6 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, cardAddForm);
 addFormValidator.enableValidation();
-let cardSection;
 
 // api.getInitialCards().then((res) => {
 //   cardSection = new Section(
@@ -74,9 +90,22 @@ function renderCard(item) {
   cardSection.addItem(card);
 }
 
-function createCard(item) {
-  return new Card(item, cardSelector, handleImageClick).getView();
+function createCard(cardData) {
+  return new Card(
+    {
+      cardData: cardData,
+
+      handleImageClick: () => {},
+      handleCardDeleteSubmit,
+      handleDeleteClick: () => {
+        deleteCardModal.open();
+      },
+    },
+    cardSelector
+  ).getView();
 }
+
+// const deleteConfirmationPopup = new PopupWithForm()
 
 function handleCardAddSubmit({ title, link }) {
   api
@@ -86,6 +115,15 @@ function handleCardAddSubmit({ title, link }) {
       addCardModal.close();
       cardAddForm.reset();
       addFormValidator.toggleButtonState();
+    })
+    .catch(console.error);
+}
+
+function handleCardDeleteSubmit(card) {
+  api
+    .deleteCard(card.getID())
+    .then((res) => {
+      deleteCardModal.close();
     })
     .catch(console.error);
 }
@@ -107,17 +145,17 @@ function handleCardAddSubmit({ title, link }) {
 //   .catch((err) => {
 //     console.error(err); // log the error to the console
 //   });
+const cardSection = new Section(
+  {
+    renderer: renderCard,
+  },
+  ".cards__list"
+);
+
 api
   .getInitialCards()
   .then((res) => {
-    cardSection = new Section(
-      {
-        items: res,
-        renderer: renderCard,
-      },
-      ".cards__list"
-    );
-    cardSection.renderItems();
+    cardSection.renderItems(res);
   })
   .catch((err) => {
     console.error(err); // log the error to the console
@@ -150,3 +188,8 @@ cardAddButton.addEventListener("click", () => {
   addCardModal.open();
 });
 addCardModal.setEventListeners();
+
+// deleteCardButton.addEventListener("click", () => {
+//   deleteCardModal.open();
+// });
+// deleteCardModal.setEventListeners();

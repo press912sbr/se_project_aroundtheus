@@ -1,12 +1,17 @@
 import Popup from "./Popup.js";
 
 class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
+  constructor(popupSelector, handleFormSubmit, handleCardDeleteSubmit) {
     super({ popupSelector });
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
     this._inputsList = this._popupForm.querySelectorAll(".modal__input");
+    this._handleCardDeleteSubmit = handleCardDeleteSubmit;
   }
+
+  // getID() {
+  //   return this._id;
+  // }
 
   _getInputValues() {
     this._inputValues = {};
